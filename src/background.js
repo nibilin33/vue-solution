@@ -6,7 +6,9 @@ import {
   /* installVueDevtools */
 } from 'vue-cli-plugin-electron-builder/lib'
 const isDevelopment = process.env.NODE_ENV !== 'production'
-
+const fs = require('fs');
+const path = require('path');
+const source = fs.readFileSync(path.join(__dirname,'../source-remote.js'),'utf-8').toString().replace(/"/g,'').split(',');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -24,20 +26,26 @@ function createWindow () {
         webSecurity: false
     }});
   const filter = {
-    urls: ['http://localhost:3000/*']
+    urls: ['http://10.200.112.35:3100/*']
   }
-  protocol.registerHttpProtocol('ume', (request, callback)=>{
-      request.url = request.url.substr(6);
-      callback(request);
-  });
   session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
-      callback({
-          redirectURL: `ume://${__dirname}/index.html`
-      });
+      const redirect = source.find((it)=>details.url.endsWith(it));
+      if(redirect) {
+        callback({
+          redirectURL:`file://${path.join(__dirname,`../dist/${redirect}`)}`
+        })
+      }else {
+        callback({
+          cancel:false,
+        });
+      }
+
   });
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    console.log(process.env.WEBPACK_DEV_SERVER_URL);
+    const serverURL = 'http://10.200.112.35:3100/';
+    win.loadURL(serverURL);
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')

@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png"></br>
+    <button v-for="(it,index) in btns" :key="index" @click="$router.push(it.path)">
+      {{it.name}}
+      </button>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      btns: [
+        {
+          name: this.$t('测试离线资源'),
+          path: '/ume/test-resource'
+        },
+        {
+          name: this.$t('测试定制'),
+          path: '/test-plan'
+        }
+      ]
+    }
   }
 }
 </script>
