@@ -26,7 +26,7 @@ npm run lint
 ```
 
 ### 功能说明        
-1. Skeleton     
+1. skeleton     
 2. 技术支持定制打包     
 3. electron离线资源包：请求拦截         
 

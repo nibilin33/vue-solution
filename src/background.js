@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, session } from 'electron'
 import {
   createProtocol,
   /* installVueDevtools */
@@ -16,10 +16,25 @@ protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({ width: 800, height: 600, webPreferences: {
-    nodeIntegration: true
-  } })
-
+  win = new BrowserWindow({ width: 800, height: 600, darkTheme: true,
+    frame:true,
+    webPreferences: {
+        nodeIntegration: true,
+        webviewTag: true,
+        webSecurity: false
+    }});
+  const filter = {
+    urls: ['http://localhost:3000/*']
+  }
+  protocol.registerHttpProtocol('ume', (request, callback)=>{
+      request.url = request.url.substr(6);
+      callback(request);
+  });
+  session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
+      callback({
+          redirectURL: `ume://${__dirname}/index.html`
+      });
+  });
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
