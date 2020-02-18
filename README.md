@@ -25,5 +25,8 @@ npm run test
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 功能说明        
+1. Skeleton     
+2. 技术支持定制打包     
+3. electron离线资源包：请求拦截         
+
