@@ -1,11 +1,11 @@
 const fs = require('fs');
-
+const opt = {
+    prefix: '',
+    outputName: 'source.js',
+};
 class SourceWebpackPlugin {
     constructor(options) {
-        this.options = options || {
-            prefix: '',
-            outputName: 'source.js',
-        };
+        this.options = Object.assign(opt,options||{});
     }
 
     apply(compiler) {
@@ -18,6 +18,7 @@ class SourceWebpackPlugin {
                 stats.compilation.chunks.forEach((chunk) => {
                     str += `${str ? ',' : ''}${chunk.files.map(filename => `"${this.options.prefix}/${filename}"`).join(',')}`;
                 });
+                console.log(process.env.NODE_ENV);
                 fs.writeFileSync(`${__dirname}/${this.options.outputName}`, str);
             } catch (error) {
                 console.log(error);
