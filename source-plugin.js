@@ -18,7 +18,6 @@ class SourceWebpackPlugin {
                 stats.compilation.chunks.forEach((chunk) => {
                     str += `${str ? ',' : ''}${chunk.files.map(filename => `"${this.options.prefix}/${filename}"`).join(',')}`;
                 });
-                console.log(process.env.NODE_ENV);
                 fs.writeFileSync(`${__dirname}/${this.options.outputName}`, str);
             } catch (error) {
                 console.log(error);
