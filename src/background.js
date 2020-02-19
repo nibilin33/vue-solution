@@ -29,6 +29,12 @@ function createWindow () {
     urls: ['http://10.200.112.35:3100/*']
   }
   session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
+      if (/(\/ume\/(extension|notice|vote|meeting|changePwd|forward|imessage|questionnaire))/g.test(details.url)) {
+        callback({
+          redirectURL:`file://${path.join(__dirname,`../dist/index.html`)}`
+        });
+        return;
+      }
       const redirect = source.find((it)=>details.url.endsWith(it));
       if(redirect) {
         callback({

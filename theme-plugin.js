@@ -1,11 +1,11 @@
 const fs = require('fs');
 const DEFAULT = {
-    prefix: '',
-    outputName: 'source.js',
+    sourcePrefix: '',
+    outputPath: '',
 };
-const PLUGINNAME = 'SourceWebpackPlugin';
+const PLUGINNAME = 'ThemeWebpackPlugin';
 
-class SourceWebpackPlugin {
+class ThemeWebpackPlugin {
     constructor(options) {
         this.options = Object.assign(DEFAULT,options||{});
     }
@@ -19,7 +19,7 @@ class SourceWebpackPlugin {
             });
             compiler.hooks.done.tap(PLUGINNAME, (stats) => {
                 try {
-                    this.createFile(stats.compilation.chunks);
+                    console.log('compiler.hooks.done');
                 } catch (error) {
                     console.log(error);
                 }
@@ -31,8 +31,6 @@ class SourceWebpackPlugin {
         });
         compiler.plugin('emit', (compilation, callback) => {
             try {
-                let allChunks = compilation.getStats().toJson().chunks;
-                this.createFile(allChunks);
                 callback();
             } catch (error) {
                 console.log(error);
@@ -40,12 +38,7 @@ class SourceWebpackPlugin {
             }
         });
     }
-    createFile(allChunks) {
-        let str = '';
-        allChunks.forEach((chunk) => {
-            str += `${str ? ',' : ''}${chunk.files.map(filename => `"${this.options.prefix}/${filename}"`).join(',')}`;
-        });
-        fs.writeFileSync(`${__dirname}/${this.options.outputName}`, str);
+    injectToHtml() {
     }
 }
-module.exports = SourceWebpackPlugin;
+module.exports = ThemeWebpackPlugin;
