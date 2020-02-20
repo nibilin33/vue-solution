@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png"></br>
-    <button v-for="(it,index) in btns" :key="index" @click="$router.push(it.path)">
+    <img alt="Vue logo" src="./assets/logo.png"><br>
+    <button v-for="(it,index) in btns" :key="index" @click="goNext(it)">
       {{it.name}}
       </button>
-    <router-view></router-view>
+    <transition name="left">
+    <router-view class="pager"></router-view>
+    </transition>
   </div>
 </template>
 
@@ -25,17 +27,38 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    goNext(it) {
+      this.$router.push(it.path);
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+@import 'assets/color.scss';
+.pager{
+  transform-origin: left center;
+  border: 1px solid var(--color-primary);
 }
+.left-enter{
+ transform:rotateY(0);
+}
+.left-enter-to{
+ transform:rotateY(-180deg);
+}
+ 
+.left-enter-active{
+ transition: 1s;
+}
+// .left-leave{
+//  transform:rotateY(90deg);
+// }
+// .left-leave-to{
+//  transform:rotateY(0);
+// }
+// .left-leave-active{
+//  transition: 1s;
+// }
 </style>

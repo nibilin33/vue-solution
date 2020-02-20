@@ -10,11 +10,17 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "server":"node ./server/server.js"
+    "server": "node ./server/server.js"
   },
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.4",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.13.1",
+    "prerender-spa-plugin": "^3.4.0",
+    "sass": "^1.23.1",
+    "sass-loader": "^8.0.0",
     "vue": "^2.6.11",
     "vue-i18n": "^8.15.3",
     "vue-router": "^3.1.5"
