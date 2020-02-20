@@ -25,7 +25,7 @@ class ThemeWebpackPlugin {
 					(htmlPluginData, callback) => {
 						const injectStr = this.injectToHtml();
 						htmlPluginData.html = htmlPluginData.html.replace('</html>', injectStr);
-						console.log(htmlPluginData.outputName,htmlPluginData.assets);
+						console.log(htmlPluginData.assets);
 						// htmlWebpackPluginAfterHtmlProcessing 返回 HtmlWebpackPlugin对象
 						// {
 						// 	html 字符串
@@ -75,8 +75,9 @@ class ThemeWebpackPlugin {
     }
     injectToHtml() {
         const themeOb = new theme({});
+        console.log(themeOb);
         const injectStr = `
-        <script type="text/javascript">window.WEBPACKTHEME = ${themeOb}</script></html>
+        <script type="text/javascript">var WEBPACKTHEME = ${themeOb}</script></html>
         `;
         return injectStr;
     }

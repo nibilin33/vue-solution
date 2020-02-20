@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png"><br>
     <button v-for="(it,index) in btns" :key="index" @click="goNext(it)">
       {{it.name}}
       </button>
@@ -24,6 +23,10 @@ export default {
         {
           name: this.$t('测试定制'),
           path: '/test-plan'
+        },
+        {
+          name: this.$t('webpack多彩plugin'),
+          path: '/test-color'
         }
       ]
     }
@@ -38,27 +41,38 @@ export default {
 
 <style lang="scss">
 @import 'assets/color.scss';
+body{
+  background-color:#ffeded96;
+}
 .pager{
-  transform-origin: left center;
   border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  width:95vw;
+  height: 50%;
+  overflow-y:auto;
+  position: absolute;
 }
 .left-enter{
+ transform-origin: right right;
  transform:rotateY(0);
 }
 .left-enter-to{
- transform:rotateY(-180deg);
+ transform-origin: left left;
+ transform:rotateY(-360deg);
 }
  
 .left-enter-active{
- transition: 1s;
+ transition: 1.5s;
 }
-// .left-leave{
-//  transform:rotateY(90deg);
-// }
-// .left-leave-to{
-//  transform:rotateY(0);
-// }
-// .left-leave-active{
-//  transition: 1s;
-// }
+.left-leave{
+ transform-origin: left left;
+ transform:rotateY(0deg);
+}
+.left-leave-to{
+ transform-origin: right right;
+ transform:rotateY(-360deg);
+}
+.left-leave-active{
+ transition: 2s;
+}
 </style>

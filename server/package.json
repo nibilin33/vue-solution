@@ -2,7 +2,9 @@
   "name": "vue-solutions",
   "version": "0.1.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "start": "node ./chat.js"
+  },
   "dependencies": {
     "core-js": "^3.6.4",
     "iconv-lite": "^0.5.1",
