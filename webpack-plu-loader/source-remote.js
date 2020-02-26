@@ -1,1 +1,1 @@
-"/css/app.3b68718e.css","/js/app.d1c1c862.js","/js/chunk-2d0b329a.42308349.js","/js/chunk-2d0b8dd5.2d1037b6.js","/js/chunk-vendors.cebf7bf3.js"
+"/css/app.13fc0a50.css","/js/app.a9174f07.js","/js/chunk-2d0b329a.71add21a.js","/js/chunk-2d0b8dd5.18a63ab5.js","/js/chunk-2d0c76e3.c0797c38.js","/js/chunk-2d207b29.3349a0a7.js","/js/chunk-vendors.c0b1de5e.js"

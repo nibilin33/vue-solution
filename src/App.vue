@@ -3,8 +3,8 @@
     <button v-for="(it,index) in btns" :key="index" @click="goNext(it)">
       {{it.name}}
       </button>
-    <transition name="left">
-    <router-view class="pager"></router-view>
+    <transition>
+    <router-view></router-view>
     </transition>
   </div>
 </template>
@@ -16,6 +16,10 @@ export default {
   data() {
     return {
       btns: [
+        {
+          name: this.$t('在线打包'),
+          path: '/webpack'
+        },
         {
           name: this.$t('测试离线资源'),
           path: '/ume/test-resource'
@@ -42,7 +46,7 @@ export default {
 <style lang="scss">
 @import 'assets/color.scss';
 body{
-  background-color:#ffeded96;
+  background-color:#f9f9f996;
 }
 .pager{
   border: 1px solid var(--color-primary);

@@ -1,6 +1,12 @@
 :root{
     --color-primary: #6A8DC3;  
 }
+$main-color: #6A8DC3;
 .font-color{
     color:var(--color-primary);
+}
+.function-hint{
+    display: inline-block;
+    padding:1rem;
+    background-color: lighten($main-color,30%);
 }
