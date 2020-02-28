@@ -1,1 +1,1 @@
-"/js/0.js","/js/1.js","/js/2.js","/js/3.js","/js/app.js","/js/chunk-vendors.js"
+"/js/0.js","/js/1.js","/js/2.js","/2.61bc68146ca489894372.hot-update.js","/js/3.js","/js/app.js","/js/chunk-vendors.js"

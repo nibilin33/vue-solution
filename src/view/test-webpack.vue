@@ -6,7 +6,6 @@
             选择文件<input type="file" name="file" multiple="multiple">
              <input type="submit" value="提交">
         </form>
-           <!-- <iframe name="result"></iframe> -->
     </div>
 </template>
 <script>

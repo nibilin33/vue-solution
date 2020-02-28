@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <button v-for="(it,index) in btns" :key="index" @click="goNext(it)">
-      {{it.name}}
-      </button>
+    <el-menu :default-active="activeIndex" mode="horizontal" @select="goNext">
+      <el-menu-item v-for="(it,index) in btns" :key="index" :index="it.path">{{it.name}}</el-menu-item>
+    </el-menu>
     <transition>
     <router-view></router-view>
     </transition>
@@ -15,6 +15,7 @@ export default {
   name: 'App',
   data() {
     return {
+      activeIndex:this.$router.currentRoute.path,
       btns: [
         {
           name: this.$t('在线打包'),
@@ -35,9 +36,11 @@ export default {
       ]
     }
   },
+  created(){
+  },
   methods: {
     goNext(it) {
-      this.$router.push(it.path);
+      this.$router.push(it);
     }
   }
 }
