@@ -78,6 +78,7 @@
     </div>
 </template>
 <script>
+import request from '@/request.js';
 export default {
     data() {
         return{
@@ -90,6 +91,10 @@ export default {
             console.log('发送到了福建省方尽快');
         },
         register() {
+          request.post('/v1/enterprise')
+            .then((res)=>{
+              console.log(res);
+            })
         },
         view(){
             

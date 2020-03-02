@@ -3,6 +3,10 @@
 ## Project setup
 ```
 npm install
+cd /server
+npm install 
+mkdir /data/db  
+mongod 启动数据库       
 ```
 
 ### Compiles and hot-reloads for development
