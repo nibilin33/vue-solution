@@ -19,6 +19,8 @@
     "mongodb": "^3.5.4",
     "multer": "^1.4.2",
     "node-monitor": "^0.3.11",
+    "vue": "^2.6.11",
+    "vue-server-renderer": "^2.6.11",
     "webpack": "^4.41.6"
   },
   "devDependencies": {

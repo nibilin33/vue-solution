@@ -1,0 +1,7 @@
+a 在调用
+ztree 在使用
+vue use it window
+ztree 在使用
+rss: 18 heapTotal: 6 heapUsed: 3 external: 0
+[1228:003BFC60]       63 ms: Scavenge 2.6 (4.7) -> 2.4 (5.7) MB, 1.2 / 0.0 ms  allocation failure 
+[1228:003BFC60]      111 ms: Scavenge 2.8 (5.7) -> 2.8 (6.7) MB, 1.7 / 0.0 ms  allocation failure 

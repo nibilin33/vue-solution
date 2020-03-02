@@ -39,7 +39,13 @@ npm run lint
 会发现日志里面没有资源的记录，但是页面依然能展示                     
 4. 多彩webpack插件                   
 5. 权限方案         
-6. gc目录是分析循环引用问题     
+6. gc目录是分析循环引用问题,node --trace_gc gc.js       
+``` 
+[pid] <time_since_start> : 
+      <Phase> <heap_used_before (old+young)> (<allocated_heap_before>) ->
+              <heap_used_after (old+young)> (<allocated_heap_after>) MB, 
+              <time_spent_gc> [<reason_of_gc>]     
+```
 7. node tcp 聊天室：telnet ip 3000  
 8. 首屏优化：SSR(vue-hackernews-2.0),prerender-spa-plugin，bigpipe  
 9.  [在线打包](http://47.96.165.64/) 目前上传未支持压缩包和文件夹   
