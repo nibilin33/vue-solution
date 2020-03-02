@@ -4,7 +4,7 @@ A
 ↓ ➘ 
 B⇆ ztree  
 v8 引擎使用的是标记清除，就还是能够回收     
-IE 使用计数引用算法，会导致没法回收         
+因为IE中的BOM、DOM的实现使用了COM，而COM对象使用的垃圾收集机制是引用计数策略。所以会存在循环引用的问题。        
 */
 const vue = require('./vue.js');
 const a = new vue();
