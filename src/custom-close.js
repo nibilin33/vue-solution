@@ -1,3 +1,4 @@
+import './nb-close.scss';
 class CustomClose extends HTMLElement {
   triple = null;
   constructor() {

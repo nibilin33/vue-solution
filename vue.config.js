@@ -13,7 +13,19 @@ module.exports = {
     productionSourceMap: false,
     outputDir:path.join(__dirname,'server/dist'),
     configureWebpack: {
-        plugins:plugins
+        plugins:plugins,
+        module:{
+            rules:[
+                {
+                    test: /\.vue$/,
+                    use:{
+                        loader: path.resolve(__dirname, './webpack-plu-loader/i18nloader.js')
+                    }
+                    
+                }
+            ]
+        }
+ 
     },
     devServer: {
         hot: false,
