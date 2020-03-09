@@ -32,6 +32,10 @@ export default {
         {
           name: this.$t('webpack多彩plugin'),
           path: '/test-color'
+        },
+        {
+          name: this.$t('登录'),
+          path: '/login'
         }
       ]
     }

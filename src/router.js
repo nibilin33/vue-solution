@@ -5,7 +5,12 @@ const testSource = resolve => require(['./view/test-source.vue'], resolve);
 const testPlan = resolve => require(['./view/test-plan.vue'], resolve);
 const testColor = resolve => require(['./view/test-color.vue'], resolve);
 const testWepack = resolve => require(['./view/test-webpack.vue'], resolve);
+const login = resolve => require(['./view/login.vue'], resolve);
 const routes = [
+    {
+        path: '/login',
+        component: login,
+    },
     {
         path: '/ume/test-resource',
         component: testSource,

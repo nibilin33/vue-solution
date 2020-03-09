@@ -18,7 +18,10 @@ protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({ width: 800, height: 600, darkTheme: true,
+  win = new BrowserWindow(
+    { 
+    width: 800, 
+    height: 600,
     frame:true,
     webPreferences: {
         nodeIntegration: true,
@@ -51,7 +54,7 @@ function createWindow () {
     // Load the url of the dev server if in development mode
     console.log(process.env.WEBPACK_DEV_SERVER_URL);
     const serverURL = 'http://10.200.112.35:3100/';
-    win.loadURL(serverURL);
+    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
