@@ -6,7 +6,13 @@ const testPlan = resolve => require(['./view/test-plan.vue'], resolve);
 const testColor = resolve => require(['./view/test-color.vue'], resolve);
 const testWepack = resolve => require(['./view/test-webpack.vue'], resolve);
 const login = resolve => require(['./view/login.vue'], resolve);
+const game = resolve => require(['./view/game/index.vue'], resolve);
+
 const routes = [
+    {
+        path: '/game',
+        component: game,
+    },
     {
         path: '/login',
         component: login,

@@ -44,6 +44,7 @@ export default {
 }
 .logo{
     width:200px;
+    height: 300px;
     object-fit: fill;
     margin: 0 auto;
     display: inline-block;
