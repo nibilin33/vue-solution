@@ -1,49 +1,68 @@
 <template>
     <div>
         <canvas id="games" width="800" height="500"></canvas>
+        <el-button @click="drawImage">开始</el-button>
+        <el-button @click="stop">停止</el-button>
     </div>
 </template>
 <script>
-import bg from './imgs/bg_0010_background.png';
-import dingding from './imgs/dingding.png';
-import water from './imgs/water.png';
 import Bird from './fly';
+import Background from './background';
+
 export default {
     data() {
         return {
+            bird:null,
+            bg:null,
+            timeout:null,
 
         }
     },
     mounted() {
-        this.drawImage();
+        this.init();
     },
     methods:{
-        drawImage() {
+        init() {
             /** @type {HTMLCanvasElement} */
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
-            //context.save();
-            //context.clearRect(0,0,800,500);
-            let img = new Image();
-            img.src = bg;
-            img.onload = ()=>{
-                context.drawImage(img,0,0,800,500);
-            }
-            context.globalCompositeOperation = "destination-over";
-            //context.save();
-            new Bird(context).animation();
-            // context.moveTo(140,237);
-            // context.lineTo(150,0);
-            // context.lineTo(140,0);
-            // context.lineTo(160,0);
-            // context.strokeStyle = "#40a9ff";
-            // context.lineWidth = 5;
-            // context.stroke();
-            let yuImg = new Image();
-            yuImg.src = water;
-            yuImg.onload = ()=>{
-                context.drawImage(yuImg,0,380,800,500);
-            }
+            this.bird = new Bird(context);
+            this.bg = new Background(context,canvas.width,canvas.height);
+            let upTimeout = null;
+            canvas.addEventListener('mousedown',()=>{
+                clearInterval(upTimeout);
+                upTimeout = setInterval(()=>{
+                    this.bird.up();
+                },200);
+            });
+            canvas.addEventListener('mouseup',()=>{
+                clearInterval(upTimeout);
+                upTimeout = setInterval(()=>{
+                    this.bird.down();
+                },200);
+            });
+        },
+        clear() {
+            const canvas = document.getElementById('games');
+            const context = canvas.getContext('2d');
+            context.clearRect(0,0,canvas.width,canvas.height);
+        },
+        stop() {
+            clearTimeout(this.timeout);
+            this.bird.stopMove();
+        },
+        async refresh() {
+            //this.clear();
+            await this.bg.draw();
+            await this.bird.draw();
+            this.timeout = setTimeout(()=>{
+                this.refresh();
+            },170);
+        },
+        drawImage() {
+            this.bg.move();
+            this.bird.move();
+            this.refresh();
         }
     }
 }
