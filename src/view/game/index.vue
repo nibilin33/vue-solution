@@ -36,7 +36,7 @@ export default {
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
             console.log(document.body.clientWidth);
-            canvas.width = document.body.clientWidth/2;
+            canvas.width = document.body.clientWidth*0.8;
             canvas.height = document.body.clientHeight/2;
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
