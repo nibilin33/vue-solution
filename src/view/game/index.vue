@@ -1,15 +1,9 @@
 <template>
     <div class="game">
-        <div>
-        使用说明 <br/>
-        1. 点击开始  <br/>
-        2. 按住屏幕角色上移，松开角色下移  <br/>
-        3. 碰到边界或者子弹，game over 
-        </div>
         <canvas id="games" width="800" height="500"></canvas>
         <br/>
-        <el-button @click="drawImage">开始</el-button>
-        <el-button @click="stop">结束</el-button>
+        <el-button type="primary" @click="drawImage">开始</el-button>
+        <el-button type="danger" @click="stop">结束</el-button>
     </div>
 </template>
 <script>
@@ -31,15 +25,16 @@ export default {
         this.init();
     },
     methods:{
-        init() {
+        async init() {
             /** @type {HTMLCanvasElement} */
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
-            console.log(document.body.clientWidth);
             canvas.width = document.body.clientWidth*0.8;
             canvas.height = document.body.clientHeight/2;
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
+            await this.bg.draw();
+            this.fillText('按住屏幕角色上移，松开角色下移');
             this.gun = new Gun(context);
             this.addEvent(canvas);
         },
@@ -67,13 +62,16 @@ export default {
                 },200);
             });
         },
-        gameOver(){
+        fillText(txt) {
             const canvas = document.getElementById('games');
             const ctx = canvas.getContext('2d');
             ctx.font = "30px Comic Sans MS";
             ctx.fillStyle = "red";
             ctx.textAlign = "center";
-            ctx.fillText("Game Over!", canvas.width/2, canvas.height/2);
+            ctx.fillText(txt, canvas.width/2, canvas.height/2);
+        },
+        gameOver(){
+            this.fillText('Game Over!');
             this.isGameOver = true;
         },
         clear() {
