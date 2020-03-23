@@ -29,7 +29,7 @@ export default {
             /** @type {HTMLCanvasElement} */
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
-            canvas.width = document.body.clientWidth*0.8;
+            canvas.width = document.body.clientWidth;
             canvas.height = document.body.clientHeight*0.75;
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
@@ -65,7 +65,7 @@ export default {
         fillText(txt) {
             const canvas = document.getElementById('games');
             const ctx = canvas.getContext('2d');
-            ctx.font = "30px Comic Sans MS";
+            ctx.font = "3rem Comic Sans MS";
             ctx.fillStyle = "red";
             ctx.textAlign = "center";
             ctx.fillText(txt, canvas.width/2, canvas.height/2);
