@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="game">
         <div>
         使用说明 <br/>
         1. 点击开始  <br/>
@@ -25,7 +25,6 @@ export default {
             gun:null,
             timeout:null,
             isGameOver:false,
-
         }
     },
     mounted() {
@@ -36,18 +35,32 @@ export default {
             /** @type {HTMLCanvasElement} */
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
-            context.canvas.width = canvas.width;
+            console.log(document.body.clientWidth);
+            canvas.width = document.body.clientWidth/2;
+            canvas.height = document.body.clientHeight/2;
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
             this.gun = new Gun(context);
+            this.addEvent(canvas);
+        },
+        addEvent(canvas) {
+            const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent);
+            let downEvent = '',upEvent='';
+            if(isMobile) {
+                downEvent = 'touchstart';
+                upEvent = 'touchend';
+            }else {
+                downEvent = 'mousedown';
+                upEvent = 'mouseup';
+            }
             let upTimeout = null;
-            canvas.addEventListener('mousedown',()=>{
+            canvas.addEventListener(downEvent,()=>{
                 clearInterval(upTimeout);
                 upTimeout = setInterval(()=>{
                     this.bird.up();
                 },200);
             });
-            canvas.addEventListener('mouseup',()=>{
+            canvas.addEventListener(upEvent,()=>{
                 clearInterval(upTimeout);
                 upTimeout = setInterval(()=>{
                     this.bird.down();
@@ -104,5 +117,8 @@ export default {
 }
 </script>
 <style lang="scss">
-
+.game{
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+}
 </style>

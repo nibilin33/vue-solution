@@ -65,6 +65,7 @@ body{
   width:95vw;
   height: 50%;
   overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   position: absolute;
 }
 .left-enter{
