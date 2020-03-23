@@ -5,7 +5,7 @@ class Bullet {
     constructor(context) {
         this.speed = 20;
         this.context = context;
-        this.x = this.context.canvas.width-100;
+        this.x = this.context.canvas.width-10;
         this.y = Math.floor(Math.random()*this.context.canvas.height+1);
         this.stop = null;
         this.bulletHeight = 20;
