@@ -11,7 +11,8 @@ const plugins = [
 module.exports = {
     lintOnSave: process.env.NODE_ENV !== 'production',
     productionSourceMap: false,
-    outputDir:path.join(__dirname,'server/dist'),
+    publicPath:'/vue-solution',
+    outputDir:path.join(__dirname,'docs'),
     configureWebpack: {
         plugins:plugins,
         module:{
