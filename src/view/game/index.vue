@@ -1,5 +1,11 @@
 <template>
     <div>
+        <div>
+        使用说明 <br/>
+        1. 点击开始  <br/>
+        2. 按住屏幕角色上移，松开角色下移  <br/>
+        3. 碰到边界或者子弹，game over 
+        </div>
         <canvas id="games" width="800" height="500"></canvas>
         <br/>
         <el-button @click="drawImage">开始</el-button>
