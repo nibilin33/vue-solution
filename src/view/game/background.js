@@ -15,7 +15,7 @@ export default class Background {
 
     move() {
         this.x = this.speed * 1 + this.x;
-        this.x = this.x % 500;
+        this.x = this.x % this.width;
         this.stop = setTimeout(()=>{
             this.move();
         },100);
