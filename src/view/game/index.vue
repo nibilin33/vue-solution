@@ -118,5 +118,9 @@ export default {
 .game{
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
 }
 </style>
