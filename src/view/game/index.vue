@@ -30,7 +30,7 @@ export default {
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
             canvas.width = document.body.clientWidth*0.8;
-            canvas.height = document.body.clientHeight/2;
+            canvas.height = document.body.clientHeight*0.75;
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
             await this.bg.draw();
