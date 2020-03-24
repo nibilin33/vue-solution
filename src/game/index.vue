@@ -2,8 +2,12 @@
     <div class="game" id="app">
         <canvas id="games" width="800" height="500"></canvas>
         <br/>
-        <el-button type="primary" @click="drawImage">开始</el-button>
-        <el-button type="danger" @click="stop">结束</el-button>
+        <audio id="audio" autoplay src="./video/heartbeat.mp3">
+            您的浏览器不支持 audio 标签。
+        </audio>
+        <button @click="drawImage">开始</button>
+        <button @click="stop">结束</button>
+        <button>静音</button>
     </div>
 </template>
 <script>

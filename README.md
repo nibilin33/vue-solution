@@ -49,7 +49,7 @@ npm run lint
 7. node tcp 聊天室：telnet ip 3000  
 8. 首屏优化：SSR(vue-hackernews-2.0),prerender-spa-plugin，bigpipe  
 9.  [在线打包](http://47.96.165.64/) 目前上传未支持压缩包和文件夹   
-10. canvas入门小游戏[在线效果](https://nibilin33.github.io/vue-solution/index.html#/game)       
+10. canvas入门小游戏[在线效果](https://nibilin33.github.io/vue-solution/game.html)       
 ### 可能遇到的问题
 1. node-sass 安装失败：npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/       
 [参考](https://segmentfault.com/a/1190000010984731)     
