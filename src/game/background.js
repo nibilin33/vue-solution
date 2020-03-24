@@ -28,7 +28,7 @@ export default class Background {
         }
         this.context.drawImage(this.img,-this.x,0,this.width,this.height);
         this.context.drawImage(this.img,this.width-this.x,0,this.width,this.height);  
-        this.context.font = `3rem Comic Sans MS`;
+        this.context.font = `30px Comic Sans MS`;
         this.context.fillText(this.xtotal, this.width*0.9, this.height-10);
     }
 
