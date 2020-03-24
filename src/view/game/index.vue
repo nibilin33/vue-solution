@@ -65,7 +65,7 @@ export default {
         fillText(txt) {
             const canvas = document.getElementById('games');
             const ctx = canvas.getContext('2d');
-            ctx.font = "3rem Comic Sans MS";
+            ctx.font = "30px Comic Sans MS";
             ctx.fillStyle = "red";
             ctx.textAlign = "center";
             ctx.fillText(txt, canvas.width/2, canvas.height/2);
