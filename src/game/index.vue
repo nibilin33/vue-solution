@@ -2,9 +2,9 @@
     <div class="game" id="app">
         <canvas id="games" width="800" height="500"></canvas>
         <br/>
-        <button class="play-button" @click="drawImage">开始</button>
-        <button class="play-button" @click="stop">结束</button>
-        <button class="play-button">静音</button>
+        <button class="play-button" v-if="isGameOver" @click="drawImage">开始</button>
+        <button class="play-button" v-else @click="stop">结束</button>
+        <button class="play-button" @click="muteAudio">静音</button>
     </div>
 </template>
 <script>
@@ -19,13 +19,16 @@ export default {
             bg:null,
             gun:null,
             timeout:null,
-            isGameOver:false,
+            isGameOver:true,
         }
     },
     async mounted() {
         await this.init();
     },
     methods:{
+        muteAudio() {
+            Music[Music.status]();
+        },
         async init() {
             /** @type {HTMLCanvasElement} */
             const canvas = document.getElementById('games');
@@ -36,7 +39,7 @@ export default {
             this.bg = new Background(context,canvas.width,canvas.height);
             await this.bg.draw();
             await this.bird.draw();
-            new Music();
+            Music.init();
             this.fillText('按住屏幕角色上移，松开角色下移','3rem');
             this.gun = new Gun(context);
             this.addEvent(canvas);

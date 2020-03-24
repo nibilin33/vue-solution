@@ -11,7 +11,7 @@ export default class Bird {
     init() {
         this.x = this.context.canvas.width/4;
         this.y = 100;
-        this.speed = 8;
+        this.speed = 12;
         this.stop = null;
         this.birdHeight = 60;
         this.birdWidth = 40;
