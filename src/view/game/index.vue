@@ -34,7 +34,7 @@ export default {
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
             await this.bg.draw();
-            this.fillText('按住屏幕角色上移，松开角色下移');
+            this.fillText('按住屏幕角色上移，松开角色下移','3rem');
             this.gun = new Gun(context);
             this.addEvent(canvas);
         },
@@ -62,10 +62,10 @@ export default {
                 },200);
             });
         },
-        fillText(txt) {
+        fillText(txt,fontSize='30px') {
             const canvas = document.getElementById('games');
             const ctx = canvas.getContext('2d');
-            ctx.font = "30px Comic Sans MS";
+            ctx.font = `${fontSize} Comic Sans MS`;
             ctx.fillStyle = "red";
             ctx.textAlign = "center";
             ctx.fillText(txt, canvas.width/2, canvas.height/2);
