@@ -13,6 +13,10 @@ module.exports = {
     productionSourceMap: false,
     publicPath:'/vue-solution',
     outputDir:path.join(__dirname,'docs'),
+    pages: {
+        index:'src/main.js',
+        game: 'src/game/main.js'
+    },
     configureWebpack: {
         plugins:plugins,
         module:{

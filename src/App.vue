@@ -18,10 +18,6 @@ export default {
       activeIndex:this.$router.currentRoute.path,
       btns: [
         {
-          name: this.$t('小游戏'),
-          path: '/game'
-        },
-        {
           name: this.$t('在线打包'),
           path: '/webpack'
         },

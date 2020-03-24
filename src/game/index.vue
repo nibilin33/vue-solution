@@ -1,5 +1,5 @@
 <template>
-    <div class="game">
+    <div class="game" id="app">
         <canvas id="games" width="800" height="500"></canvas>
         <br/>
         <el-button type="primary" @click="drawImage">开始</el-button>
@@ -80,6 +80,7 @@ export default {
             context.clearRect(0,0,canvas.width,canvas.height);
         },
         stop() {
+            this.gameOver();
             clearTimeout(this.timeout);
             this.bird.stopMove();
             this.gun.stopFire();
