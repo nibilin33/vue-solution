@@ -2,9 +2,6 @@
     <div class="game" id="app">
         <canvas id="games" width="800" height="500"></canvas>
         <br/>
-        <audio id="audio" src="./video/heartbeatcut.mp3">
-            您的浏览器不支持 audio 标签。
-        </audio>
         <button class="play-button" @click="drawImage">开始</button>
         <button class="play-button" @click="stop">结束</button>
         <button class="play-button">静音</button>
@@ -14,7 +11,7 @@
 import Bird from './fly';
 import Background from './background';
 import Gun from './bullet';
-
+import Music from './mp3';
 export default {
     data() {
         return {
@@ -39,6 +36,7 @@ export default {
             this.bg = new Background(context,canvas.width,canvas.height);
             await this.bg.draw();
             await this.bird.draw();
+            new Music();
             this.fillText('按住屏幕角色上移，松开角色下移','3rem');
             this.gun = new Gun(context);
             this.addEvent(canvas);
