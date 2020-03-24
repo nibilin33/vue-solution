@@ -2,6 +2,8 @@
     <div class="game" id="app">
         <canvas id="games" width="800" height="500"></canvas>
         <br/>
+        <audio src="./video/heartbeat2.mp3" preload id="music" loop hidden>
+        </audio>
         <button class="play-button" v-if="isGameOver" @click="drawImage">开始</button>
         <button class="play-button" v-else @click="stop">结束</button>
         <button class="play-button" @click="muteAudio">静音</button>
@@ -72,6 +74,7 @@ export default {
         gameOver(){
             this.fillText('Game Over!');
             this.isGameOver = true;
+            Music.pause();  
         },
         clear() {
             const canvas = document.getElementById('games');
@@ -104,6 +107,7 @@ export default {
                 const ctx = canvas.getContext('2d');
                 ctx.clearRect(0,0,canvas.width,canvas.height);
             }
+            Music.play();
             this.isGameOver = false;
             this.bird.init();
             this.bg.move();
