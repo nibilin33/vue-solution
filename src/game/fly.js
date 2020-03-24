@@ -11,7 +11,7 @@ export default class Bird {
     init() {
         this.x = this.context.canvas.width/4;
         this.y = 100;
-        this.speed = 12;
+        this.speed = 5;
         this.stop = null;
         this.birdHeight = 60;
         this.birdWidth = 40;
@@ -44,7 +44,7 @@ export default class Bird {
         this.stop = setTimeout(()=>{
             this.move();
             this.changeSpeed();
-        },100);
+        },50);
     }
     stopMove() {
         clearTimeout(this.stop);

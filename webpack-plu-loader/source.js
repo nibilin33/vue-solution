@@ -1,1 +1,1 @@
-"/js/0.js","/js/1.js","/js/2.js","/js/3.js","/js/4.js","/js/chunk-vendors.js","/js/game.js","/game.f2f900353a0bf8983da8.hot-update.js","/js/index.js"
+"/js/0.js","/js/1.js","/js/2.js","/js/3.js","/js/4.js","/js/chunk-vendors.js","/js/game.js","/game.1673b0492526d7859775.hot-update.js","/js/index.js"
