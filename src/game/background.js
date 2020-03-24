@@ -1,4 +1,4 @@
-import bg from './imgs/bg2.jpg';
+import bg from './imgs/bg6.jpg';
 import {getImage} from './utils';
 
 export default class Background {

@@ -9,7 +9,7 @@ export default class Bird {
         this.init();
     }
     init() {
-        this.x = this.context.canvas.width/2;
+        this.x = this.context.canvas.width/4;
         this.y = 100;
         this.speed = 8;
         this.stop = null;
