@@ -1,4 +1,3 @@
-import audioSrc from './video/heartbeat2.mp3';
 export default class Music {
     static audio = null
     static status = 'play'
@@ -12,7 +11,7 @@ export default class Music {
     static pause() {
         Music.audio.pause();
         Music.status = 'play';
-        Music.audio.load();
+        //Music.audio.load();
     }
     static play() {
         Music.audio.play();
