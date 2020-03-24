@@ -2,27 +2,38 @@ import dingding from './imgs/dingding.png';
 import {getImage} from './utils';
 export default class Bird {
     constructor(context){
-        this.a = 9;
+        this.a = 0.95;
         this.context = context;
         this.img = null;
+        this.direction = 1;
         this.init();
     }
     init() {
         this.x = this.context.canvas.width/2;
         this.y = 100;
-        this.speed = 10;
+        this.speed = 8;
         this.stop = null;
         this.birdHeight = 60;
         this.birdWidth = 40;
     }
     //向上加速speed = speed + at,t=1s
     up(){
-      this.speed = this.speed - this.a*100/1000;
-      this.speed = -Math.abs(this.speed);
+      this.direction = -1;
+      if(this.speed>0) {
+          this.speed = 0;
+      }
+      this.changeSpeed();
     }
     down(){
-      this.speed = this.speed + this.a*100/1000;
-      this.speed = Math.abs(this.speed);
+        this.direction = 1;
+        if(this.speed<0) {
+          this.speed = 0;
+        }
+        this.changeSpeed();
+    }
+    changeSpeed() {
+        this.speed = this.speed+this.direction*this.a;
+        this.speed = this.direction*Math.abs(this.speed);
     }
     move() {
         this.y = this.speed * 1 + this.y;
@@ -32,7 +43,8 @@ export default class Bird {
         }
         this.stop = setTimeout(()=>{
             this.move();
-        },200);
+            this.changeSpeed();
+        },100);
     }
     stopMove() {
         clearTimeout(this.stop);

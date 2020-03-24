@@ -4,7 +4,7 @@ import {getImage} from './utils';
 export default class Background {
     constructor(context) {
         this.context = context;
-        this.speed = 10;
+        this.speed = 5;
         this.x = 0;
         this.xvelocity = 9;
         this.width = this.context.canvas.width;
@@ -14,7 +14,7 @@ export default class Background {
     }
 
     move() {
-        this.x = this.speed * 1 + this.x;
+        this.x = this.speed + this.x;
         this.x = this.x % this.width;
         this.stop = setTimeout(()=>{
             this.move();

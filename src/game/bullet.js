@@ -3,7 +3,7 @@ import bullet from './imgs/bullet.png';
 
 class Bullet {
     constructor(context) {
-        this.speed = 20;
+        this.speed = 8;
         this.context = context;
         this.x = this.context.canvas.width-10;
         this.y = Math.floor(Math.random()*this.context.canvas.height+1);
@@ -22,7 +22,7 @@ class Bullet {
         this.x = this.x - this.speed;
         this.stop = setTimeout(()=>{
             this.move();
-        },200);
+        },20);
     }
     destroy() {
         clearTimeout(this.stop);

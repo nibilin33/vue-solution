@@ -2,12 +2,12 @@
     <div class="game" id="app">
         <canvas id="games" width="800" height="500"></canvas>
         <br/>
-        <audio id="audio" autoplay src="./video/heartbeat.mp3">
+        <audio id="audio" src="./video/heartbeatcut.mp3">
             您的浏览器不支持 audio 标签。
         </audio>
-        <button @click="drawImage">开始</button>
-        <button @click="stop">结束</button>
-        <button>静音</button>
+        <button class="play-button" @click="drawImage">开始</button>
+        <button class="play-button" @click="stop">结束</button>
+        <button class="play-button">静音</button>
     </div>
 </template>
 <script>
@@ -25,8 +25,8 @@ export default {
             isGameOver:false,
         }
     },
-    mounted() {
-        this.init();
+    async mounted() {
+        await this.init();
     },
     methods:{
         async init() {
@@ -34,10 +34,11 @@ export default {
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
             canvas.width = document.body.clientWidth;
-            canvas.height = document.body.clientHeight*0.75;
+            canvas.height = document.body.clientHeight;
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
             await this.bg.draw();
+            await this.bird.draw();
             this.fillText('按住屏幕角色上移，松开角色下移','3rem');
             this.gun = new Gun(context);
             this.addEvent(canvas);
@@ -52,18 +53,11 @@ export default {
                 downEvent = 'mousedown';
                 upEvent = 'mouseup';
             }
-            let upTimeout = null;
             canvas.addEventListener(downEvent,()=>{
-                clearInterval(upTimeout);
-                upTimeout = setInterval(()=>{
-                    this.bird.up();
-                },200);
+                this.bird.up();
             });
             canvas.addEventListener(upEvent,()=>{
-                clearInterval(upTimeout);
-                upTimeout = setInterval(()=>{
-                    this.bird.down();
-                },200);
+               this.bird.down();
             });
         },
         fillText(txt,fontSize='30px') {
@@ -101,7 +95,7 @@ export default {
             }
             this.timeout = setTimeout(()=>{
                 this.refresh();
-            },160);
+            },20);
         },
         drawImage() {
             if(this.isGameOver) {
@@ -121,11 +115,34 @@ export default {
 </script>
 <style lang="scss">
 .game{
-    overflow-y:auto;
+    height: 100%;
     -webkit-overflow-scrolling:touch;
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
+    text-align: center;
+    button{
+        background: 0 0;
+        background-image: none;
+        outline: 0;
+        border: 0;
+        cursor: pointer;
+        padding: 0;
+    }
+    .play-button {
+        width: 100px;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 30px;
+        background-color: rgba(0,0,0,.6);
+        position: relative;
+        transition: background-color .2s;
+        color:#fff;
+        &:hover{
+            background-color: rgba(0,0,0,.5);
+        }
+    }
 }
+
 </style>
