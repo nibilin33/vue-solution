@@ -32,6 +32,12 @@ class Bullet {
 export default class Gun {
     constructor(context) {
         this.context = context;
+        this.init();
+    }
+    init() {
+        this.list && this.list.forEach((bullet)=>{
+            bullet.destroy();
+        });
         this.list = [];
         this.stop = null;
     }
@@ -44,12 +50,8 @@ export default class Gun {
         },800);
     }
     stopFire() {
-        this.list.forEach((bullet)=>{
-            bullet.destroy();
-        });
-        this.list = [];
         clearTimeout(this.stop);
-        this.stop =  null;
+        this.init();
     }
     refresh(position) {
         if(this.detection(position)) {

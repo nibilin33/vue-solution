@@ -86,14 +86,14 @@ export default {
             this.bg.stopMove();
         },
         async refresh() {
+            await this.bg.draw();
+            await this.bird.draw();
+            this.gun.refresh(this.bird);
             if(!this.bird.stop||!this.gun.stop) {
                 this.gameOver();
                 this.stop();
                 return;
             }
-            await this.bg.draw();
-            await this.bird.draw();
-            this.gun.refresh(this.bird);
             this.timeout = setTimeout(()=>{
                 this.refresh();
             },160);
