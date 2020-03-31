@@ -36,7 +36,7 @@ export default {
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
             canvas.width = document.body.clientWidth;
-            canvas.height = document.body.clientHeight;
+            canvas.height = document.body.clientHeight-45;
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
             await this.bg.draw();
@@ -99,7 +99,7 @@ export default {
             }
             this.timeout = setTimeout(()=>{
                 this.refresh();
-            },20);
+            },1000/60);
         },
         drawImage() {
             if(this.isGameOver) {

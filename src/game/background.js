@@ -26,6 +26,7 @@ export default class Background {
         if(!this.img) {
             this.img = await getImage(bg);
         }
+        console.log(this.img);
         this.context.drawImage(this.img,-this.x,0,this.width,this.height);
         this.context.drawImage(this.img,this.width-this.x,0,this.width,this.height);  
         this.context.font = `30px Comic Sans MS`;
