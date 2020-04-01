@@ -7,3 +7,4 @@ export const getImage = (source)=>{
         }
     });
 }
+export const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent);

@@ -14,6 +14,7 @@ import Bird from './fly';
 import Background from './background';
 import Gun from './bullet';
 import Music from './mp3';
+import {isMobile} from './utils';
 export default {
     data() {
         return {
@@ -36,7 +37,7 @@ export default {
             const canvas = document.getElementById('games');
             const context = canvas.getContext('2d');
             canvas.width = document.body.clientWidth;
-            canvas.height = document.body.clientHeight-45;
+            canvas.height = document.body.clientHeight-50;
             this.bird = new Bird(context);
             this.bg = new Background(context,canvas.width,canvas.height);
             await this.bg.draw();
@@ -47,7 +48,6 @@ export default {
             this.addEvent(canvas);
         },
         addEvent(canvas) {
-            const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent);
             let downEvent = '',upEvent='';
             if(isMobile) {
                 downEvent = 'touchstart';
@@ -89,9 +89,10 @@ export default {
             this.bg.stopMove();
         },
         async refresh() {
+            this.clear();
             await this.bg.draw();
             await this.bird.draw();
-            this.gun.refresh(this.bird);
+            this.gun.refresh(this.bird,this.bg.xtotal);
             if(!this.bird.stop||!this.gun.stop) {
                 this.gameOver();
                 this.stop();
@@ -119,6 +120,10 @@ export default {
 }
 </script>
 <style lang="scss">
+body,html{
+    height: 100%;
+    margin:0;
+}
 .game{
     height: 100%;
     -webkit-overflow-scrolling:touch;

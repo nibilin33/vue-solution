@@ -1,5 +1,5 @@
 import bg from './imgs/bg6.jpg';
-import {getImage} from './utils';
+import {getImage,isMobile} from './utils';
 
 export default class Background {
     constructor(context) {
@@ -26,7 +26,6 @@ export default class Background {
         if(!this.img) {
             this.img = await getImage(bg);
         }
-        console.log(this.img);
         this.context.drawImage(this.img,-this.x,0,this.width,this.height);
         this.context.drawImage(this.img,this.width-this.x,0,this.width,this.height);  
         this.context.font = `30px Comic Sans MS`;

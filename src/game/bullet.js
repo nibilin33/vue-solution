@@ -11,6 +11,7 @@ class Bullet {
         this.bulletHeight = 20;
         this.bulletWidth = 60;
         this.img = null;
+        this.acspeed = 1;
     }
     async draw() {
         if(!this.img) {
@@ -19,7 +20,7 @@ class Bullet {
         this.context.drawImage(this.img,this.x,this.y);
     }
     move() {
-        this.x = this.x - this.speed;
+        this.x = this.x - this.speed*this.acspeed;
         this.stop = setTimeout(()=>{
             this.move();
         },20);
@@ -32,6 +33,7 @@ class Bullet {
 export default class Gun {
     constructor(context) {
         this.context = context;
+        this.rate = 1;
         this.init();
     }
     init() {
@@ -53,7 +55,8 @@ export default class Gun {
         clearTimeout(this.stop);
         this.init();
     }
-    refresh(position) {
+    refresh(position,rate) {
+        this.rate = rate;
         if(this.detection(position)) {
             this.stopFire();
             return;
@@ -63,6 +66,7 @@ export default class Gun {
             if(bullet.x<0) {
                 bullet.destroy();
             }else{
+                bullet.acspeed = Math.round(rate/300)+1;
                 await bullet.draw();
                 update.push(bullet);
             }
