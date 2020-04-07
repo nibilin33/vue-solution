@@ -44,7 +44,10 @@ export default {
       ]
     }
   },
-  created(){
+  mounted() {
+    setTimeout(()=>{
+      this.activeIndex=this.$router.currentRoute.path;
+    },200);
   },
   methods: {
     goNext(it) {

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "protocol-buffers-encodings": "^1.1.0"
+  }
+}

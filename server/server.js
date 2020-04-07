@@ -9,6 +9,7 @@ const runGulp = require('./build-task');
 app.use(express.static(path.join(__dirname,'dist')));
 app.use(express.static(path.join(__dirname,'output')));
 require('./api')(app);
+require('./serialize')(app);
 app.get('*',function(request, response) {
     try {
         response.sendFile(path.resolve('./dist/index.html'));

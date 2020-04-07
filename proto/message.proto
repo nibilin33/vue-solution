@@ -1,0 +1,8 @@
+package user;
+
+message Data {
+	required string time = 12;
+	required string id = 1;
+    required string message = 13;
+    required string password = 14;
+}
