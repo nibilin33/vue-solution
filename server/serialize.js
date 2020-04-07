@@ -26,7 +26,7 @@ router.post('/v1/json',(req, res)=>{
 });
 router.post('/v1/proto',(req, res)=>{
     var arr = [],chunks;
-    var startTime = new Date().valueOf();
+    req.headers['start-time'] = new Date().valueOf();
     req.on('data',buff=>{
         arr.push(buff);
     });
@@ -35,7 +35,7 @@ router.post('/v1/proto',(req, res)=>{
         var result = Object.assign({},message.decode(chunks));
         var endTime =  new Date().valueOf();
         result.endTime = endTime;
-        result.startTime = startTime;
+        result.startTime = req.headers['start-time'];
         res.send(result);
     });
  

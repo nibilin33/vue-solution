@@ -5,10 +5,10 @@
     <p/>
     <el-form label-width="100" size="small">
       <el-form-item label="字段重复扩展/次">
-        <el-input-number v-model="msRepeat" :min="10" :max="500"></el-input-number>
+        <el-input-number v-model="msRepeat" :min="100" :max="2500"></el-input-number>
       </el-form-item>
-      <el-form-item label="发送频率（次/秒）">
-        <el-input-number v-model="num" :min="10" :max="2000"></el-input-number>
+      <el-form-item label="请求次数">
+        <el-input-number v-model="num" :min="1" :max="2000"></el-input-number>
         <el-button type="primary" style="margin-left:5px;" @click="send"
           >发送</el-button
         >
@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       num: 10,
-      msRepeat: 10,
+      msRepeat: 100,
       jsonResult: "",
       protoResult: "",
     };
@@ -75,13 +75,13 @@ export default {
           return;
       }
       for (let i = 0; i < this.num; i++) {
-        setTimeout(() => {
-          request.post("/v1/json", this.sendRepeat).then((res) => {
+          const obj = Object.assign({index:i.toString()},this.sendRepeat);
+          request.post("/v1/json", obj).then((res) => {
             let data = res.data;
-            this.jsonResult += data.endTime - data.startTime + "ms\n";
+            this.jsonResult += `NO.${data.index}:`+(data.endTime - data.startTime) + "ms\n";
           });
           request
-            .post("/v1/proto", message.Data.encode(this.sendRepeat), {
+            .post("/v1/proto", message.Data.encode(obj), {
               headers: {
                 "Content-Type":
                   "Content-Type:application/octet-stream;charset=UTF-8",
@@ -91,9 +91,8 @@ export default {
             })
             .then((res) => {
               let data = res.data;
-              this.protoResult += data.endTime - data.startTime + "ms\n";
+              this.protoResult += `NO.${data.index}:`+(data.endTime - data.startTime) + "ms\n";
             });
-        }, 1000 / this.num);
       }
     },
   },

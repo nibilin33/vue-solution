@@ -5,4 +5,5 @@ message Data {
 	required string id = 1;
     required string message = 13;
     required string password = 14;
+    required string index = 2;
 }

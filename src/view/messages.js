@@ -38,6 +38,9 @@ function defineData () {
     if (!defined(obj.password)) throw new Error("password is required")
     var len = encodings.string.encodingLength(obj.password)
     length += 1 + len
+    if (!defined(obj.index)) throw new Error("index is required")
+    var len = encodings.string.encodingLength(obj.index)
+    length += 1 + len
     return length
   }
 
@@ -61,6 +64,10 @@ function defineData () {
     buf[offset++] = 114
     encodings.string.encode(obj.password, buf, offset)
     offset += encodings.string.encode.bytes
+    if (!defined(obj.index)) throw new Error("index is required")
+    buf[offset++] = 18
+    encodings.string.encode(obj.index, buf, offset)
+    offset += encodings.string.encode.bytes
     encode.bytes = offset - oldOffset
     return buf
   }
@@ -74,15 +81,17 @@ function defineData () {
       time: "",
       id: "",
       message: "",
-      password: ""
+      password: "",
+      index: ""
     }
     var found0 = false
     var found1 = false
     var found2 = false
     var found3 = false
+    var found4 = false
     while (true) {
       if (end <= offset) {
-        if (!found0 || !found1 || !found2 || !found3) throw new Error("Decoded message is not valid")
+        if (!found0 || !found1 || !found2 || !found3 || !found4) throw new Error("Decoded message is not valid")
         decode.bytes = offset - oldOffset
         return obj
       }
@@ -109,6 +118,11 @@ function defineData () {
         obj.password = encodings.string.decode(buf, offset)
         offset += encodings.string.decode.bytes
         found3 = true
+        break
+        case 2:
+        obj.index = encodings.string.decode(buf, offset)
+        offset += encodings.string.decode.bytes
+        found4 = true
         break
         default:
         offset = skip(prefix & 7, buf, offset)
