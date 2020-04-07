@@ -23,7 +23,11 @@ npm run build
 ```
 npm run test
 ```
-
+### Run local server
+```
+npm run server          
+Service listening http at http://0.0.0.0:3000   
+```
 ### Lints and fixes files
 ```
 npm run lint
@@ -51,7 +55,7 @@ npm run lint
 9.  [在线打包](http://47.96.165.64/) 目前上传未支持压缩包和文件夹   
 10. canvas入门小游戏[在线效果](https://nibilin33.github.io/vue-solution/game.html)   
 canvas 完整项目[代码](https://github.com/nibilin33/canvas-game)       
-11. 序列化反序列化性能影响情况 [在线效果](https://nibilin33.github.io/vue-solution/#/serialize)               
+11. 序列化反序列化性能影响情况 [地址](https://nibilin33.github.io/vue-solution/#/serialize)               
 
 ### 可能遇到的问题
 1. node-sass 安装失败：npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/       
