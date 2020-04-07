@@ -34,6 +34,10 @@ export default {
           path: '/test-color'
         },
         {
+          name: this.$t('序列化反序列化'),
+          path: '/serialize'
+        },
+        {
           name: this.$t('登录'),
           path: '/login'
         }
@@ -54,6 +58,7 @@ export default {
 @import 'assets/color.scss';
 body{
   background-color:#f9f9f996;
+  margin: 0;
 }
 .pager{
   border: 1px solid var(--color-primary);

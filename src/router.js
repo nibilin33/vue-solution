@@ -6,6 +6,7 @@ const testPlan = resolve => require(['./view/test-plan.vue'], resolve);
 const testColor = resolve => require(['./view/test-color.vue'], resolve);
 const testWepack = resolve => require(['./view/test-webpack.vue'], resolve);
 const login = resolve => require(['./view/login.vue'], resolve);
+const testSerialize = resolve => require(['./view/test-serialize.vue'], resolve);
 
 const routes = [
     {
@@ -28,6 +29,10 @@ const routes = [
         path: '/webpack',
         component: testWepack,
     },
+    {
+        path:'/serialize',
+        component: testSerialize,
+    }
 ]
 const router = new Router({
     mode: 'hash',
