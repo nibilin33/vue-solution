@@ -41,7 +41,6 @@ import request from "@/request.js";
 import message from "./messages.js";
 const  sendData = {
         id: "12345",
-        time: "1",
         message: "test",
         password: "OEUIW",
 };
@@ -76,9 +75,14 @@ export default {
       }
       for (let i = 0; i < this.num; i++) {
           const obj = Object.assign({index:i.toString()},this.sendRepeat);
+          obj.time = new Date().valueOf().toString();
           request.post("/v1/json", obj).then((res) => {
             let data = res.data;
-            this.jsonResult += `NO.${data.index}:`+(data.endTime - data.startTime) + "ms\n";
+            data.reciveTime = new Date().valueOf();
+            let netTime = data.reciveTime-data.time;
+            let transTime = data.endTime - data.startTime;
+            this.jsonResult += `NO.${data.index}:`+`网络开销${netTime}ms`+`|转化开销${transTime}ms`+
+            `|总开销${netTime+transTime}ms`+ "\n";
           });
           request
             .post("/v1/proto", message.Data.encode(obj), {
@@ -91,7 +95,11 @@ export default {
             })
             .then((res) => {
               let data = res.data;
-              this.protoResult += `NO.${data.index}:`+(data.endTime - data.startTime) + "ms\n";
+              data.reciveTime = new Date().valueOf();
+              let netTime = data.reciveTime-data.time;
+              let transTime = data.endTime - data.startTime;
+              this.protoResult += `NO.${data.index}:`+`网络开销${netTime}ms`+`|转化开销${transTime}ms`+
+            `|总开销${netTime+transTime}ms`+ "\n";
             });
       }
     },
