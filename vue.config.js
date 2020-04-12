@@ -12,10 +12,7 @@ module.exports = {
     lintOnSave: process.env.NODE_ENV !== 'production',
     productionSourceMap: false,
     publicPath:process.env.publicPath||'/',
-    outputDir:path.join(__dirname,process.env.publicPath||'./server/dist'),
-    // publicPath:'/vue-solution',
-    // outputDir:path.join(__dirname,'docs'),
-    //outputDir:path.join(__dirname,'./server/dist'),
+    outputDir:path.join(__dirname,process.env.outputDir||'./server/dist'),
     pages: {
         index:'src/main.js',
         game: 'src/game/main.js'
