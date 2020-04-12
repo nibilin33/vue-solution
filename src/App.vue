@@ -19,7 +19,7 @@
       class="link"
       v-for="(it,index) in btns"
       :style="(activeIndex === it.path?'text-decoration: underline;':'')+getColor(index)"
-      @click="goNext(it.path)"
+      @click.stop="goNext(it.path)"
       :key="index">{{it.name}}</a>
     </div>
     <transition>
@@ -89,6 +89,7 @@ export default {
     },
     goNext(it) {
       this.$router.push(it);
+      this.changePosition();
     },
     getColor(index) {
       return `color:${colorList[index%colorList.length]};`;
@@ -131,9 +132,8 @@ body{
   &:hover{
     text-decoration: underline;
   }
-  padding:5px;
+  padding:10px 5px;
 }
-
 .before {
     float: left;
     width: 35%;

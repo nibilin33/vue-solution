@@ -56,8 +56,6 @@ export default {
   },
   mounted() {
     this.lastError = localStorage.getItem('gitHubErrorPage')||0;
-    request.get('/v1/clear/end');
-    //request.post('/v1/clear/add',{items:[]});
   },
   computed: {
     percent() {
