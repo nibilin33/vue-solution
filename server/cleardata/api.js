@@ -4,7 +4,7 @@ const fs = require('fs');
 let tmpList = [];
 const writefile = ()=>{
     if(fs.existsSync('./user.json')) {
-        fs.appendFileSync(JSON.stringify(tmpList));
+        fs.appendFileSync('./user.json',JSON.stringify(tmpList));
         tmpList = [];
         return;
     }
@@ -26,6 +26,9 @@ router.post('/v1/clear/add',(req, res)=>{
             var list = Object.assign({},JSON.parse(str));
             if(list.items && list.items.length) {
                 tmpList = tmpList.concat(list.items);
+            }
+            if(tmpList.length>1000) {
+                writefile();
             }
             console.log(tmpList.length);
             res.send('success'); 

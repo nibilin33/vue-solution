@@ -40,8 +40,6 @@
 import request from "@/request.js";
 import {addUsers,updateUsers} from './db.js';
 import userdata from './GitHub_user.json';
-import {uniqBy} from 'lodash';
-let tmpList = [];
 export default {
   data() {
     return {
@@ -92,7 +90,7 @@ export default {
       try {
         const rest = await request
         .get(
-          `https://api.github.com/search/repositories?q=language:js+followers:%3E1+size:%3E30000&sort=stars&order=desc&page=${page}>;rel=next`
+          `https://api.github.com/search/repositories?q=language:js+followers:%3E1+size:%3E30000&sort=stars&order=asc&page=${page}>;rel=next`
         ); 
         this.result = rest.data;
         if(!this.total) {
@@ -121,7 +119,7 @@ export default {
           console.log(error.toString());
           setTimeout(()=>{
             this.getList(this.currentPage);
-          },5000)
+          },1000)
       }
 
     },

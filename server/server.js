@@ -6,8 +6,9 @@ const logger = require('logger').createLogger('dev.log');
 const multer  = require('multer');
 const fs = require('fs');
 const runGulp = require('./build-task');
-app.use(express.static(path.join(__dirname,'dist')));
-app.use(express.static(path.join(__dirname,'output')));
+console.log(path.join(__dirname,'./dist'));
+app.use(express.static(path.join(__dirname,'./dist')));
+app.use(express.static(path.join(__dirname,'./output')));
 const installApi = require('./api-configs');
 installApi(app);
 app.get('*',function(request, response) {

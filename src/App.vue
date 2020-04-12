@@ -1,8 +1,27 @@
 <template>
   <div id="app">
-    <el-menu :default-active="activeIndex" mode="horizontal" @select="goNext">
+    <!-- <el-menu :default-active="activeIndex" mode="horizontal" @select="goNext">
       <el-menu-item v-for="(it,index) in btns" :key="index" :index="it.path">{{it.name}}</el-menu-item>
-    </el-menu>
+    </el-menu> -->
+    <!-- <el-link
+    v-for="(it,index) in btns" 
+    :key="index"
+    :href="'./'+it.path" target="_blank">{{it.name}}</el-link> -->
+    <div
+      class="link-list"
+      :title="open?'点击收起':'点击展开'"
+      :class="open?'link-open':'link-fold'"
+      @click="changePosition">
+      <!-- <before></before><after></after> -->
+      <div class="before"></div>
+      <div class="after"></div>
+      <a 
+      class="link"
+      v-for="(it,index) in btns"
+      :style="(activeIndex === it.path?'text-decoration: underline;':'')+getColor(index)"
+      @click="goNext(it.path)"
+      :key="index">{{it.name}}</a>
+    </div>
     <transition>
     <router-view></router-view>
     </transition>
@@ -10,12 +29,13 @@
 </template>
 
 <script>
-
+const colorList = ["#f56c6c","#67c23a","#e33ce6","#409eff","#8E0A83","#FF9640"];
 export default {
   name: 'App',
   data() {
     return {
       activeIndex:this.$router.currentRoute.path,
+      open:true,
       btns: [
         {
           name: this.$t('在线打包'),
@@ -30,12 +50,16 @@ export default {
           path: '/test-plan'
         },
         {
-          name: this.$t('webpack多彩plugin'),
+          name: this.$t('webpack多彩'),
           path: '/test-color'
         },
         {
           name: this.$t('序列化反序列化'),
           path: '/serialize'
+        },
+        {
+          name: this.$t('Github用户数据'),
+          path: '/git'
         },
         {
           name: this.$t('登录'),
@@ -45,13 +69,29 @@ export default {
     }
   },
   mounted() {
-    setTimeout(()=>{
-      this.activeIndex=this.$router.currentRoute.path;
-    },200);
+    this.setActive();
+  },
+  watch:{
+    '$route.path':function(from,to){
+      console.log(to);
+      this.setActive();
+      //this.activeIndex=to;
+    }
   },
   methods: {
+    changePosition() {
+      this.open = !this.open;
+    },
+    setActive() {
+      setTimeout(()=>{
+        this.activeIndex=this.$router.currentRoute.path;
+      },200);
+    },
     goNext(it) {
       this.$router.push(it);
+    },
+    getColor(index) {
+      return `color:${colorList[index%colorList.length]};`;
     }
   }
 }
@@ -61,38 +101,50 @@ export default {
 @import 'assets/color.scss';
 body{
   background-color:#f9f9f996;
+  padding-top:5px;
   margin: 0;
 }
-.pager{
-  border: 1px solid var(--color-primary);
-  border-radius: 5px;
-  width:95vw;
-  height: 50%;
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-  position: absolute;
+.link-list{
+  position: fixed;
+  bottom:0;
+  right:0;
+  background:#d9ff66;
+  z-index:200;
+  border-radius: 50%;
+  padding: 25px;
+  text-align: justify;
 }
-.left-enter{
- transform-origin: right right;
- transform:rotateY(0);
+.link-open{
+  width:400px;
+  height: 400px;
 }
-.left-enter-to{
- transform-origin: left left;
- transform:rotateY(-360deg);
+.link-fold{
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
- 
-.left-enter-active{
- transition: 1.5s;
+.link{
+  cursor: pointer;
+  font-weight: bold;
+  &:hover{
+    text-decoration: underline;
+  }
+  padding:5px;
 }
-.left-leave{
- transform-origin: left left;
- transform:rotateY(0deg);
+
+.before {
+    float: left;
+    width: 35%;
+    height: 100%;
+    shape-outside: radial-gradient(farthest-side ellipse at right, transparent 100%, #c1f7d473);
+    z-index:-1;
 }
-.left-leave-to{
- transform-origin: right right;
- transform:rotateY(-360deg);
-}
-.left-leave-active{
- transition: 2s;
+.after {
+    float: right;
+    width: 35%; height: 100%;
+    shape-outside: radial-gradient(farthest-side ellipse at left, transparent 100%, #c1f7d473);
+    z-index:-1;
 }
 </style>
