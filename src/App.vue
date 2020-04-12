@@ -1,18 +1,10 @@
 <template>
   <div id="app">
-    <!-- <el-menu :default-active="activeIndex" mode="horizontal" @select="goNext">
-      <el-menu-item v-for="(it,index) in btns" :key="index" :index="it.path">{{it.name}}</el-menu-item>
-    </el-menu> -->
-    <!-- <el-link
-    v-for="(it,index) in btns" 
-    :key="index"
-    :href="'./'+it.path" target="_blank">{{it.name}}</el-link> -->
     <div
       class="link-list"
       :title="open?'点击收起':'点击展开'"
       :class="open?'link-open':'link-fold'"
       @click="changePosition">
-      <!-- <before></before><after></after> -->
       <div class="before"></div>
       <div class="after"></div>
       <a 
@@ -64,6 +56,12 @@ export default {
         {
           name: this.$t('登录'),
           path: '/login'
+        },
+        {
+          name: this.$t('权限')
+        },
+        {
+          name: this.$t('服务端渲染')
         }
       ]
     }
@@ -73,7 +71,6 @@ export default {
   },
   watch:{
     '$route.path':function(from,to){
-      console.log(to);
       this.setActive();
       //this.activeIndex=to;
     }
@@ -88,6 +85,10 @@ export default {
       },200);
     },
     goNext(it) {
+      if(!it) {
+        this.$message.error('未支持');
+        return;
+      }
       this.$router.push(it);
       this.changePosition();
     },
@@ -116,8 +117,8 @@ body{
   text-align: justify;
 }
 .link-open{
-  width:400px;
-  height: 400px;
+  width:240px;
+  height: 320px;
 }
 .link-fold{
   width: 30px;
