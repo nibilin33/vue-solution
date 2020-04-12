@@ -72,7 +72,6 @@ export default {
   watch:{
     '$route.path':function(from,to){
       this.setActive();
-      //this.activeIndex=to;
     }
   },
   methods: {
