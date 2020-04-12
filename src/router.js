@@ -7,7 +7,7 @@ const testColor = resolve => require(['./view/test-color.vue'], resolve);
 const testWepack = resolve => require(['./view/test-webpack.vue'], resolve);
 const login = resolve => require(['./view/login.vue'], resolve);
 const testSerialize = resolve => require(['./view/test-serialize.vue'], resolve);
-
+const testGithub = resolve => require(['./view/test-github.vue'], resolve);
 const routes = [
     {
         path: '/login',
@@ -32,6 +32,9 @@ const routes = [
     {
         path:'/serialize',
         component: testSerialize,
+    },{
+        path:'/git',
+        component:testGithub,
     }
 ]
 const router = new Router({
