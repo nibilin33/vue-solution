@@ -17,7 +17,7 @@
     <p>需要清理数据：{{clearCount}}</p>
     <p>异常：{{error}}</p>
     <el-progress type="circle" :percentage="percentCycle"></el-progress>
-      <div class="img-list" v-for="(it,index) in userdata" :key="index">
+      <!-- <div class="img-list" v-for="(it,index) in userdata" :key="index">
         <img
           :src="it.avatar_url"/>
           <span class="img-info">
@@ -29,7 +29,7 @@
           公司:{{it.company||'No company'}}<br/>
           地址：{{it.location||'No location'}}<br/>
           </span>
-      </div>
+      </div> -->
   </div>
 </template>
 <script>
@@ -39,7 +39,7 @@
 // url 字段获取用户信息
 import request from "@/request.js";
 import {addUsers,updateUsers} from './db.js';
-import userdata from './GitHub_user.json';
+// import userdata from './GitHub_user.json';
 export default {
   data() {
     return {
@@ -51,7 +51,7 @@ export default {
       percentCycle:0,
       error:'',
       clearCount:0,
-      userdata:Object.freeze(userdata.map((it)=>JSON.parse(it.user)))
+      // userdata:Object.freeze(userdata.map((it)=>JSON.parse(it.user)))
     };
   },
   mounted() {
@@ -88,27 +88,23 @@ export default {
       try {
         const rest = await request
         .get(
-          `https://api.github.com/search/repositories?q=language:js+followers:%3E1+size:%3E30000&sort=stars&order=asc&page=${page}>;rel=next`
+          `https://api.github.com/search/repositories?q=language:js+followers:%3E1+size:%3E30000&sort=stars&order=asc&page=${page}&per_page=50`
         ); 
         this.result = rest.data;
         if(!this.total) {
           this.total = rest.data.total_count;
         }
-        
-       
         if(this.result.items && this.result.items.length) {
             request.post('/v1/clear/add',this.result)
           //await addUsers(this.result);
           //tmpList.concat(this.result.items);
         }
-        if(page*30+this.result.items.length<this.total) {
+        if(page*50+this.result.items.length<this.total) {
           page++;
           setTimeout(async()=>{
             await this.getList(page);
           },500);
         }else{
-          // tmpList = uniqBy(tmpList,'userId');
-          // await addUsers({items:tmpList});
           request.get('/v1/clear/end');
         }
       } catch (error) {
