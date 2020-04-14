@@ -70,7 +70,7 @@ export default {
     this.setActive();
   },
   watch:{
-    '$route.path':function(from,to){
+    '$route.path':function(){
       this.setActive();
     }
   },
@@ -109,7 +109,7 @@ body{
   position: fixed;
   bottom:0;
   right:0;
-  background:#d9ff66;
+  background:#edf396;
   z-index:200;
   border-radius: 50%;
   padding: 25px;
