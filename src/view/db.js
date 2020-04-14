@@ -24,7 +24,7 @@ export const addUsers = async(objs)=>{
     let lists = [];
     const targetKey = ['avatar_url','public_repos','followers','url','name',
     'email','company','location','description','created_at','updated_at','pushed_at',
-    'language','id','stargazers_count','homepage','type'];
+    'language','id','stargazers_count','homepage','type','html_url'];
     lists = objs.map((obj)=>{
         let score = new GitHub();
         targetKey.forEach((name)=>{

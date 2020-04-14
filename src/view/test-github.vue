@@ -24,7 +24,7 @@
         <img
           :src="it.avatar_url"/>
           <span class="img-info">
-          <a :href="it.url">{{it.url}}</a><br/>
+          <a :href="it.html_url" target="_blank">{{it.html_url}}</a><br/>
           Name：{{it.name||'No name'}}<br/>
           分支:{{it.public_repos}}<br/>
           Followers:{{it.followers||'No followers'}}<br/>
