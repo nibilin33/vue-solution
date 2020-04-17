@@ -24,3 +24,4 @@ yarn-error.log*
 /dist_electron
 /server/dist    
 server/cleardata/api.js
+server/cleardata/clear.js
