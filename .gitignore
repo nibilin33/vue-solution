@@ -25,3 +25,5 @@ yarn-error.log*
 /server/dist    
 /server/cleardata/api.js
 /server/cleardata/clear.js
+server/cleardata/api.js
+server/cleardata/clear.js
