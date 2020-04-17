@@ -18,7 +18,6 @@ export const getList = () =>{
     //         resolve([]);
     //     });
     // });
-
 }
 export const addUsers = async(objs)=>{
     let lists = [];

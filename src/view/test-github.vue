@@ -55,7 +55,7 @@ export default {
       percentCycle: 0,
       error: "",
       clearCount: 0,
-      userdata:Object.freeze(userdata)
+      userdata:Object.freeze(userdata.filter((it)=>it.email)),
     };
   },
   mounted() {
