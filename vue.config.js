@@ -1,11 +1,13 @@
 const SourceWebpackPlugin = require('./webpack-plu-loader/source-plugin');
 const ThemeWebpackPlugin = require('./webpack-plu-loader/themeWebpackPlugin/index');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const path = require('path');
 
 const plugins = [
     new SourceWebpackPlugin({
         outputName: process.env.NODE_ENV !== 'production'? 'source.js':'source-remote.js'
     }),
+    new ManifestPlugin(),
     // new ThemeWebpackPlugin(),
 ];
 module.exports = {
@@ -33,7 +35,7 @@ module.exports = {
  
     },
     devServer: {
-        hot: false,
+        hot: true,
         proxy: {
             '/api/v1': {
                 target: 'http://0.0.0.0:3000',
