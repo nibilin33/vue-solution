@@ -31,6 +31,5 @@ export const addUsers = async(objs)=>{
         });
         return score;
     });
-    console.log(lists.length);
     await AV.Object.saveAll(lists);
 }

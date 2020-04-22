@@ -7,7 +7,8 @@
       @click="changePosition">
       <div class="before"></div>
       <div class="after"></div>
-      <a 
+      <a
+      v-show="open"
       class="link"
       v-for="(it,index) in btns"
       :style="(activeIndex === it.path?'text-decoration: underline;':'')+getColor(index)"
@@ -21,49 +22,14 @@
 </template>
 
 <script>
-const colorList = ["#f56c6c","#67c23a","#e33ce6","#409eff","#8E0A83","#FF9640"];
+const colorList = ["#f56c6c","#67c23a","#e33ce6","#409eff","#8E0A83","#FF9640","#3ac2aa"];
 export default {
   name: 'App',
   data() {
     return {
       activeIndex:this.$router.currentRoute.path,
       open:true,
-      btns: [
-        {
-          name: this.$t('在线打包'),
-          path: '/webpack'
-        },
-        {
-          name: this.$t('测试离线资源'),
-          path: '/ume/test-resource'
-        },
-        {
-          name: this.$t('测试定制'),
-          path: '/test-plan'
-        },
-        {
-          name: this.$t('webpack多彩'),
-          path: '/test-color'
-        },
-        {
-          name: this.$t('序列化反序列化'),
-          path: '/serialize'
-        },
-        {
-          name: this.$t('Github用户数据'),
-          path: '/git'
-        },
-        {
-          name: this.$t('登录'),
-          path: '/login'
-        },
-        {
-          name: this.$t('权限')
-        },
-        {
-          name: this.$t('服务端渲染')
-        }
-      ]
+      btns: this.$router.options.routes||[]
     }
   },
   mounted() {
@@ -84,10 +50,7 @@ export default {
       },200);
     },
     goNext(it) {
-      if(!it) {
-        this.$message.error('未支持');
-        return;
-      }
+      console.log(it);
       this.$router.push(it);
       this.changePosition();
     },

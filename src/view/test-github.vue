@@ -20,7 +20,7 @@
     <br />
     <br />
     <el-button @click="importDB">入库</el-button>
-    <div class="img-list" v-for="(it,index) in userdata" :key="index">
+    <!-- <div class="img-list" v-for="(it,index) in userdata" :key="index">
         <img
           :src="it.avatar_url"/>
           <span class="img-info">
@@ -34,7 +34,7 @@
           描述：<br/>
           <span class="desc">{{it.description||'No desc'}}</span>
           </span>
-      </div>
+      </div> -->
   </div>
 </template>
 <script>
