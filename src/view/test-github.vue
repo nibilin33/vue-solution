@@ -43,7 +43,7 @@
 // url 字段获取用户信息
 import request from "@/request.js";
 import { addUsers, updateUsers } from "./db.js";
-import userdata from '../../public/GitHub_user.json';
+// import userdata from '../../public/GitHub_user.json';
 export default {
   data() {
     return {
@@ -55,7 +55,6 @@ export default {
       percentCycle: 0,
       error: "",
       clearCount: 0,
-      userdata:Object.freeze(userdata.filter((it)=>it.email)),
     };
   },
   mounted() {

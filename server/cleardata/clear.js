@@ -28,6 +28,7 @@ const mergeUserDatas = async (readFilePath) => {
   var options = {
     headers: {
       "User-Agent": useragent,
+      Authorization: "token b12aeb61ad6b2cb14810b82c5a769d417ac6f97d"
     }
   };
   const file = fs.readFileSync(readFilePath);

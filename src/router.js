@@ -9,7 +9,13 @@ const login = resolve => require(['./view/login.vue'], resolve);
 const testSerialize = resolve => require(['./view/test-serialize.vue'], resolve);
 const testGithub = resolve => require(['./view/test-github.vue'], resolve);
 const testAST = resolve => require(['./view/test-ast.vue'],resolve);
+const testGC = resolve => require(['./view/test-gc.vue'],resolve);
 const routes = [
+    {
+        path: '/gc',
+        component: testGC,
+        name:'内存泄漏实验'
+    },
     {
         path: '/login',
         component: login,

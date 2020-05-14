@@ -57,6 +57,7 @@ router.get("/v1/clear/page", (req, res) => {
     url: `https://api.github.com/search/repositories?${params.join("&")}`,
     headers: {
       "User-Agent": useragent,
+      Authorization: "token b12aeb61ad6b2cb14810b82c5a769d417ac6f97d"
     }
   };
   request(options, function(error, response, body) {
